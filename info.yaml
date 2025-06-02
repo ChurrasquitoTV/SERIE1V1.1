@@ -39,9 +39,9 @@ pinout:
   uo[7]: "Y[7]"
 
   # Bidirectional pins
-  uio[0]: "SEL[0]"
-  uio[1]: "SEL[1]"
-  uio[2]: "SEL[2]"
+  uio[0]: ""
+  uio[1]: ""
+  uio[2]: ""
   uio[3]: ""
   uio[4]: ""
   uio[5]: ""
