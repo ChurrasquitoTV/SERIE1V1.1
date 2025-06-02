@@ -1,25 +1,28 @@
-module tt_um_ChurrasquitoTV (
-    input  wire [7:0] ui_in,     // Entradas de usuario (por ejemplo, switches)
-    input  wire [7:0] uio_in,    // Entradas adicionales
-    output wire [7:0] uo_out,    // Salidas (por ejemplo, LEDs)
-    output wire [7:0] uio_out,   // Salidas adicionales
-    input  wire [7:0] ui_in_sync, // Entradas sincronizadas
+module tt_um_alu (
+    input  wire [7:0] ui_in,
+    output wire [7:0] uo_out,
+    input  wire [7:0] uio_in,
+    output wire [7:0] uio_out,
+    output wire [7:0] uio_oe,
+    input  wire ena,
     input  wire clk,
     input  wire rst_n
 );
-    wire [7:0] A = ui_in[3:0];   // A: bits 3:0
-    wire [7:0] B = ui_in[7:4];   // B: bits 7:4
-    wire [2:0] sel = uio_in[2:0]; // selector: bits 2:0 de uio_in
+    wire [3:0] A = ui_in[3:0];
+    wire [3:0] B = ui_in[7:4];
+    wire [2:0] sel = uio_in[2:0];
 
     wire [7:0] Y;
 
     alu_8bit alu_inst (
-        .A(A),
-        .B(B),
+        .A({4'b0000, A}),
+        .B({4'b0000, B}),
         .sel(sel),
         .Y(Y)
     );
 
     assign uo_out = Y;
-    assign uio_out = 8'b0;
+    assign uio_out = 8'b00000000;
+    assign uio_oe  = 8'b00000000;
+
 endmodule
