@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:
   title:        "ALU de 8 bits con operaciones lógicas y suma"
-  author:       "AURA ESTEFANIA CANO RODAS"
+  author:       "BYRON DENILSON DE LA CRUZ CASTRO"
   discord:      ""
   description:  "Implementa una ALU de 8 bits con suma, AND, OR, XOR y NOT."
   language:     "Verilog"
