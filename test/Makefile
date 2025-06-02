@@ -1,41 +1,26 @@
-# Makefile
-# See https://docs.cocotb.org/en/stable/quickstart.html for more info
+# Makefile para simulación con Cocotb e Icarus Verilog
 
-# defaults
-SIM ?= icarus
-TOPLEVEL_LANG ?= verilog
-SRC_DIR = $(PWD)/../src
-PROJECT_SOURCES = adder_8bit.v alu_8bit.v full_adder.v tt_um_alu.v
-ifneq ($(GATES),yes)
+# Lenguaje del diseño
+TOPLEVEL_LANG = verilog
 
-# RTL simulation:
-SIM_BUILD				= sim_build/rtl
-VERILOG_SOURCES += $(addprefix $(SRC_DIR)/,$(PROJECT_SOURCES))
+# Simulador a usar (icarus es el predeterminado en Tiny Tapeout)
+SIM = icarus
 
-else
+# Nombre del módulo top en Verilog (NO el testbench, sino el DUT)
+TOPLEVEL = tt_um_alu
 
-# Gate level simulation:
-SIM_BUILD				= sim_build/gl
-COMPILE_ARGS    += -DGL_TEST
-COMPILE_ARGS    += -DFUNCTIONAL
-COMPILE_ARGS    += -DSIM
-VERILOG_SOURCES += $(PDK_ROOT)/ihp-sg13g2/libs.ref/sg13g2_io/verilog/sg13g2_io.v
-VERILOG_SOURCES += $(PDK_ROOT)/ihp-sg13g2/libs.ref/sg13g2_stdcell/verilog/sg13g2_stdcell.v
-
-# this gets copied in by the GDS action workflow
-VERILOG_SOURCES += $(PWD)/gate_level_netlist.v
-
-endif
-
-# Allow sharing configuration between design and testbench via `include`:
-COMPILE_ARGS 		+= -I$(SRC_DIR)
-
-# Include the testbench sources:
-VERILOG_SOURCES += $(PWD)/tb.v
-TOPLEVEL = tb
-
-# MODULE is the basename of the Python test file
+# Nombre del archivo Python (sin extensión .py) donde está el test Cocotb
 MODULE = test
 
-# include cocotb's make rules to take care of the simulator setup
+# Archivos Verilog a simular (ruta relativa desde este Makefile)
+VERILOG_SOURCES = \
+  ../src/tt_um_alu.v \
+  ../src/alu_8bit.v \
+  ../src/adder_8bit.v \
+  ../src/full_adder.v
+
+# Agrega argumentos de compilación si necesitas (por ejemplo: -Wall)
+COMPILE_ARGS =
+
+# Incluir reglas estándar de Cocotb para preparar la simulación
 include $(shell cocotb-config --makefiles)/Makefile.sim
