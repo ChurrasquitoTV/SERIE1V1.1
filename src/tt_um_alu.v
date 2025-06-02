@@ -1,4 +1,4 @@
-module tt_um_alu (
+module tt_um_ChurrasquitoTV (
     input  wire [7:0] ui_in,     // Entradas de usuario (por ejemplo, switches)
     input  wire [7:0] uio_in,    // Entradas adicionales
     output wire [7:0] uo_out,    // Salidas (por ejemplo, LEDs)
