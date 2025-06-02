@@ -1,7 +1,7 @@
 # Tiny Tapeout project information
 project:
   title:        "ALU de 8 bits con operaciones lógicas y suma"
-  author:       "BYRON DE LA CRUZ CASTRO"
+  author:       "AURA ESTEFANIA CANO RODAS"
   discord:      ""
   description:  "Implementa una ALU de 8 bits con suma, AND, OR, XOR y NOT."
   language:     "Verilog"
@@ -9,7 +9,7 @@ project:
 
   tiles: "1x1"
 
-  top_module:  "tt_um_ChurrasquitoTV"
+  top_module:  "tt_um_alu"
 
   source_files:
     - "tt_um_alu.v"
@@ -39,9 +39,9 @@ pinout:
   uo[7]: "Y[7]"
 
   # Bidirectional pins
-  uio[0]: ""
-  uio[1]: ""
-  uio[2]: ""
+  uio[0]: "SEL[0]"
+  uio[1]: "SEL[1]"
+  uio[2]: "SEL[2]"
   uio[3]: ""
   uio[4]: ""
   uio[5]: ""
@@ -50,4 +50,3 @@ pinout:
 
 # Do not change!
 yaml_version: 6
-
